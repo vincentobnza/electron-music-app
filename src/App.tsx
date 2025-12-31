@@ -6,6 +6,7 @@ import { PlayerControls } from "@/components/PlayerControls";
 import { HomePage, SearchPage, LibraryPage, PlaylistPage } from "@/pages";
 import { usePlaylistStore } from "@/stores";
 import { usePreferencesStore } from "@/stores";
+import { NavigationProvider } from "@/contexts/NavigationContext";
 
 function App() {
   const [currentView, setCurrentView] = useState("home");
@@ -58,23 +59,25 @@ function App() {
   };
 
   return (
-    <div className="h-screen w-screen bg-[#F7F7F7] text-zinc-900 flex flex-col overflow-hidden">
-      {/* Custom Title Bar */}
-      <TitleBar />
-      <div className="flex flex-1 min-h-0">
-        {/* Sidebar */}
-        <Sidebar onNavigate={handleNavigate} currentView={currentView} />
-        {/* Main Content */}
-        <div className="flex-1 flex flex-col min-w-0">
-          {/* Top Bar */}
-          <TopBar />
-          {/* Content Area */}
-          <div className="flex-1 overflow-hidden">{renderPage()}</div>
+    <NavigationProvider navigate={handleNavigate}>
+      <div className="h-screen w-screen bg-[#F7F7F7] text-zinc-900 flex flex-col overflow-hidden">
+        {/* Custom Title Bar */}
+        <TitleBar />
+        <div className="flex flex-1 min-h-0">
+          {/* Sidebar */}
+          <Sidebar onNavigate={handleNavigate} currentView={currentView} />
+          {/* Main Content */}
+          <div className="flex-1 flex flex-col min-w-0">
+            {/* Top Bar */}
+            <TopBar />
+            {/* Content Area */}
+            <div className="flex-1 overflow-hidden">{renderPage()}</div>
+          </div>
         </div>
+        {/* Player Controls */}
+        <PlayerControls />
       </div>
-      {/* Player Controls */}
-      <PlayerControls />
-    </div>
+    </NavigationProvider>
   );
 }
 

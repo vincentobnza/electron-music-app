@@ -2,6 +2,7 @@ import { FaPlay } from "react-icons/fa";
 import { usePlayerStore } from "@/stores";
 import type { Playlist } from "@/types";
 import { formatTime } from "@/utils";
+import { useNavigation } from "@/contexts/NavigationContext";
 
 interface PlaylistCardProps {
   playlist: Playlist;
@@ -19,6 +20,7 @@ export const PlaylistCard = ({
   variant = "default",
 }: PlaylistCardProps) => {
   const { setQueue, setCurrentTrack, play } = usePlayerStore();
+  const { navigate } = useNavigation();
 
   const handlePlay = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -29,10 +31,18 @@ export const PlaylistCard = ({
     }
   };
 
+  const handleCardClick = () => {
+    if (onClick) {
+      onClick();
+    } else {
+      navigate(`playlist-${playlist.id}`);
+    }
+  };
+
   if (variant === "compact") {
     return (
       <div
-        onClick={onClick}
+        onClick={handleCardClick}
         className="group relative cursor-pointer transition-colors"
       >
         <div
@@ -88,7 +98,7 @@ export const PlaylistCard = ({
 
   return (
     <div
-      onClick={onClick}
+      onClick={handleCardClick}
       className="group bg-white border border-zinc-100 rounded-2xl cursor-pointer"
     >
       <div

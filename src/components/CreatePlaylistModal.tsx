@@ -3,7 +3,6 @@ import { usePlaylistStore } from "@/stores";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
@@ -51,27 +50,22 @@ export const CreatePlaylistModal = ({ trigger }: CreatePlaylistModalProps) => {
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Create New Playlist</DialogTitle>
-          <DialogDescription>
-            Give your playlist a name and optional description.
-          </DialogDescription>
         </DialogHeader>
-        <div className="space-y-4 py-4">
-          <div className="space-y-4">
-            <label
-              htmlFor="playlist-name"
-              className="text-md font-medium text-zinc-600 "
-            >
-              Name
-            </label>
-            <Input
-              id="playlist-name"
-              placeholder="My Playlist"
-              value={playlistName}
-              onChange={(e) => setPlaylistName(e.target.value)}
-              autoFocus
-              className="mt-2 text-md"
-            />
-          </div>
+        <div className="mt-4 space-y-4">
+          <label
+            htmlFor="playlist-name"
+            className="text-md font-medium text-zinc-600 "
+          >
+            Name
+          </label>
+          <Input
+            id="playlist-name"
+            placeholder="My Playlist"
+            value={playlistName}
+            onChange={(e) => setPlaylistName(e.target.value)}
+            autoFocus
+            className="mt-2 text-md"
+          />
         </div>
         <DialogFooter>
           <Button

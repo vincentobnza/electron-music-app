@@ -37,7 +37,9 @@ export const PlaylistView = ({ playlistId }: PlaylistViewProps) => {
   return (
     <div className="h-full overflow-y-auto bg-[#F7F7F7]">
       {/* Header */}
-      <div className="px-6 pt-6 pb-4 w-full bg-linear-to-b from-purple-100 to-transparent">
+      <div className="px-6 pt-6 pb-4 w-full bg-linear-to-b from-purple-100 to-transparent relative overflow-hidden">
+        {/* OVERLAY IMAGE  */}
+
         <div className="flex items-end gap-6">
           <div className="w-56 h-56 rounded-2xl border border-zinc-100 flex-shrink-0 overflow-hidden relative">
             {playlist.coverArt ? (

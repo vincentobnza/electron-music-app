@@ -21,7 +21,7 @@ type SortOption =
   | "tracks-desc";
 
 export const LibraryView = () => {
-  const { playlists, setCurrentPlaylist } = usePlaylistStore();
+  const { playlists } = usePlaylistStore();
   const [searchQuery, setSearchQuery] = useState("");
   const [sortBy, setSortBy] = useState<SortOption>("recently-added");
 
@@ -130,7 +130,6 @@ export const LibraryView = () => {
             key={playlist.id}
             playlist={playlist}
             imageHeight="h-50"
-            onClick={() => setCurrentPlaylist(playlist)}
             showPlayButton={false}
           />
         ))}
